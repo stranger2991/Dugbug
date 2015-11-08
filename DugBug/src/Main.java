@@ -1,5 +1,8 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +14,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import static java.nio.file.Files.readAllBytes;
+import static java.nio.file.Paths.get;
+
 public class Main {
 	Map< String , String> results;
 
@@ -118,10 +127,11 @@ public class Main {
 			NodeList firstchild = root.getChildNodes();
 			for(int i =0 ;i < firstchild.getLength();i++)
 			{
+				System.out.println(firstchild.item(i).getNodeType());
 				if(firstchild.item(i).getNodeType() == Node.ELEMENT_NODE)
 				{	
-					System.out.println(firstchild.item(i).getNodeType());
-					processConfig((Element)firstchild.item(i));
+					System.out.println(" In element "+firstchild.item(i).getNodeType());
+					//processConfig((Element)firstchild.item(i));
 				}
 			}	
 			//System.out.println(firstchild.getLength());
@@ -145,7 +155,36 @@ public class Main {
 	public static void main(String[] args) 
 	{
 		Main m = new Main();
-		m.processConfigUtil();
+		//m.processConfigUtil();
+		//JSONObject j = XML.toJSONObject(string)
+		
+//		try {
+//			String content = new String(readAllBytes(get("src\\issue.xml")));
+//			//System.out.println(content);
+//			JSONObject j = XML.toJSONObject(content);
+//			String s = j.toString(4);
+//		//	System.out.println(s);
+//			JSONObject json = new JSONObject(s);
+//			String xml = XML.toString(json);
+//			System.out.println(xml);
+//			
+//			//save the xml file 
+//			
+//			FileWriter fileWriter = new FileWriter(new File("issue1.xml"));
+//            fileWriter.write(xml);
+//            fileWriter.close();			//close else nothing will be saved
+//            
+//            JSONObject j1 = XML.toJSONObject(xml);
+//            System.out.println(j1.toString(4));
+//            if(j.toString().equals(j1.toString()))
+//            	System.out.println("Equql");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (JSONException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 }
