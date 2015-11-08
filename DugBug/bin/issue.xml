@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Issue id='1'>
+	<SQL value='sql1'>
+		<output value='True'>
+			<SQL value='sql2'>
+				<output value='1'>
+					<fix>
+						<SQL value='fix sql  value 1' />
+					</fix>
+				</output>
+
+				<output value='2'>
+					<SQL value='sql3' />
+					<output value='none'>
+						<fix>
+							<RestEndpoint value='send a post req' />
+						</fix>
+					</output>
+				</output>
+			</SQL>
+		</output>
+
+		<output value='False'>
+			<fix>
+				<Manual value='Manual Intervention' />
+			</fix>
+		</output>
+	</SQL>
+</Issue>
